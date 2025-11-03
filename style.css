@@ -1,0 +1,510 @@
+/* ===== 1. Root Variable Definitions ===== */
+:root {
+    /* --- NEW CATCHY BOY THEME PALETTE --- */
+    /* More vibrant, energetic blue. */
+    --primary-color: #007bff;
+    --primary-color-hover: #0056b3;
+    --primary-gradient: linear-gradient(135deg, #00c6ff 0%, #007bff 100%);
+    --primary-shadow: rgba(0, 123, 255, 0.3);
+    
+    /* Playful accent color (bright orange/yellow). */
+    --accent-color: #ffc107;
+    --accent-color-hover: #e0a800;
+    
+    /* Darker, punchier text colors. */
+    --dark-text: #212529;       /* For headings */
+    --secondary-text: #495057; /* For body text */
+    --light-text: #6c757d;     /* For footer/meta text */
+    
+    /* Background and border colors remain clean. */
+    --bg-white: #ffffff;
+    --bg-light: #f8f9fa;
+    --border-light: #dee2e6; /* Slightly darker border for more definition */
+    
+    /* Standardized values for cards. */
+    --card-border-radius: 10px; /* Slightly less rounded */
+    --card-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Stronger shadow for pop */
+}
+
+/* ===== 2. Global Resets & Base Styles ===== */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Defines a subtle page-load animation for a polished feel. */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    line-height: 1.7;
+    color: var(--secondary-text);
+    background: var(--bg-white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    animation: fadeIn 0.8s ease-out;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--primary-color-hover);
+}
+ul {
+    list-style: none;
+}
+
+/* ===== 3. Sidebar Layout ===== */
+.sidebar {
+    width: 320px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--bg-white);
+    border-right: 1px solid var(--border-light);
+    padding: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: auto;
+    z-index: 10;
+    transition: width 0.3s ease, padding 0.3s ease;
+}
+
+/* 3.1 Sidebar Profile Section */
+.profile {
+    margin-bottom: 20px;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 7px solid var(--bg-white);
+    /* Softer, more vibrant shadow for a "pop" effect. */
+    box-shadow: 0 10px 30px var(--primary-shadow);
+    object-fit: cover;
+}
+
+.profile h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 26px; /* Slightly larger for impact */
+    font-weight: 700; /* Bolder */
+    color: var(--dark-text);
+    margin-bottom: 5px;
+}
+
+.profile .job-title {
+    /* Uses the accent color to draw attention to the user's role. */
+    font-size: 14px; /* Slightly larger */
+    font-weight: 700; /* Bolder for energetic feel */
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    line-height: 1.6;
+}
+
+/* 3.2 Sidebar Navigation */
+.main-nav ul li {
+    margin-bottom: 8px;
+}
+
+.main-nav ul li a {
+    font-size: 14px; /* Slightly larger nav text */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--secondary-text);
+    padding: 12px 15px; /* Bigger click target, more space */
+    display: block;
+    border-radius: 6px; /* Slightly less rounded for a modern edge */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    /* Provides clear visual feedback on hover/selection. */
+    /* Uses a vibrant gradient and a subtle slide-right effect. */
+    background: var(--primary-gradient);
+    color: var(--bg-white);
+    transform: translateX(10px); /* More pronounced slide effect */
+}
+
+/* 3.3 Sidebar Footer */
+.sidebar-footer {
+    font-size: 13px;
+    color: var(--light-text);
+    padding-top: 20px;
+}
+.sidebar-footer .contact-info {
+    margin-bottom: 15px;
+}
+.sidebar-footer .contact-info a {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.sidebar-footer .social-links a {
+    font-size: 20px; /* Larger social icons */
+    margin: 0 10px;
+    color: var(--secondary-text);
+}
+.sidebar-footer .social-links a:hover {
+    color: var(--accent-color); /* Uses accent color for hover feedback. */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+.sidebar-footer p {
+    margin-bottom: 5px;
+    line-height: 1.5;
+}
+
+/* ===== 4. Main Content Layout ===== */
+.main-content {
+    margin-left: 320px;
+    position: relative;
+    transition: margin-left 0.3s ease;
+}
+
+/* 4.1 Base Page Section Styling */
+.page-section {
+    padding: 5rem 6rem;
+    border-bottom: 1px solid var(--border-light);
+    min-height: 80vh;
+}
+.page-section:last-of-type {
+    min-height: 100vh;
+}
+
+.page-section h2 {
+    font-family: 'Playfair Display', serif; /* Keeps elegant serif for titles */
+    font-size: 42px; /* Slightly larger and bolder */
+    font-weight: 700;
+    color: var(--dark-text);
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    /* Applies a thicker, more impactful accent-colored underline. */
+    border-bottom: 5px solid var(--accent-color);
+    padding-bottom: 10px;
+    line-height: 1.2; /* Tighter line height for bold titles */
+}
+.page-section h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 26px; /* Slightly larger */
+    font-weight: 700; /* Bolder */
+    color: var(--dark-text);
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+.page-section p {
+    font-size: 17px; /* Slightly larger body text for readability */
+    margin-bottom: 2rem;
+    max-width: 800px;
+}
+
+/* ===== 5. Hero Section (Home) ===== */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 60px 6rem;
+    position: relative;
+    border-bottom: 1px solid var(--border-light);
+    /* Subtle geometric pattern for more interest */
+    background-image: url('data:image/svg+xml,%3Csvg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23f0f2f5" fill-opacity="0.7" fill-rule="evenodd"%3E%3Cpath d="M5 0h1L0 6V5zM6 5v1H5z"%3E%3C/path%3E%3C/g%3E%3C/svg%3E');
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 90px; /* Larger, more impactful hero title */
+    font-weight: 800; /* Extra bold */
+    line-height: 1.05; /* Tighter line height */
+    margin-bottom: 30px; /* More space */
+    
+    /* Applies a vibrant gradient fill to the main heading for high visual impact. */
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-content .bio {
+    font-size: 20px; /* Larger bio text */
+    color: var(--secondary-text);
+    margin-bottom: 35px; /* More space */
+    max-width: 480px; /* Wider for more content */
+}
+
+.hero-content blockquote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 19px; /* Slightly larger quote */
+    border-left: 5px solid var(--accent-color); /* Thicker accent border */
+    padding: 20px 25px; /* More horizontal padding */
+    margin-bottom: 30px;
+    background: var(--bg-light);
+    border-radius: 0 var(--card-border-radius) var(--card-border-radius) 0;
+}
+.hero-content blockquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px; /* Slightly larger cite */
+    color: var(--light-text);
+    margin-top: 8px; /* More space */
+}
+
+/* 5.1 Hero CTA Button */
+.btn {
+    display: inline-block;
+    padding: 16px 40px; /* Larger button */
+    background: var(--primary-gradient);
+    color: var(--bg-white);
+    border: none;
+    font-size: 14px; /* Slightly larger button text */
+    font-weight: 700; /* Bolder button text */
+    text-transform: uppercase;
+    letter-spacing: 1.2px; /* Slightly more letter spacing */
+    border-radius: 50px;
+    box-shadow: 0 8px 20px var(--primary-shadow); /* Stronger initial shadow */
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); /* More dynamic transition curve */
+}
+
+.btn:hover {
+    transform: translateY(-7px); /* More pronounced "lift" effect */
+    box-shadow: 0 15px 35px var(--primary-shadow); /* Stronger hover shadow */
+}
+
+/* 5.2 Hero Background Image */
+.hero-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 55%; 
+    background-image: url('images/Front-Pic.png'); /* Ensure this filename is correct */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    z-index: 1;
+}
+
+/* ===== 6. "About Me" Section ===== */
+.info-list {
+    list-style: none;
+    padding: 0;
+}
+.info-list li {
+    font-size: 17px; /* Slightly larger */
+    margin-bottom: 14px; /* More spacing */
+}
+.info-list li strong {
+    font-weight: 700; /* Bolder label */
+    color: var(--dark-text);
+    margin-right: 10px; /* More space */
+    min-width: 150px; /* Wider for consistency */
+    display: inline-block;
+}
+
+/* ===== 7. "Achievements" Section ===== */
+.achievement-list {
+    list-style: disc;
+    padding-left: 25px; /* More indentation */
+}
+.achievement-list li {
+    font-size: 17px; /* Consistent font size */
+    margin-bottom: 12px; /* More spacing */
+    color: var(--secondary-text);
+}
+
+/* ===== 8. Gallery (Hobbies, Achievements, Gallery) ===== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted min-width for grid */
+    gap: 2.5rem; /* More space between gallery items */
+}
+
+.gallery-grid figure {
+    margin: 0;
+    border: none;
+    border-radius: var(--card-border-radius);
+    overflow: hidden;
+    background: var(--bg-white);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Stronger initial shadow */
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.gallery-grid figure:hover {
+    transform: translateY(-12px); /* More pronounced "lift" effect */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); /* Much stronger hover shadow */
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 380px; /* Slightly adjusted height */
+    object-fit: contain;
+    display: block;
+    background-color: var(--bg-light);
+    border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
+    transition: transform 0.4s ease-out;
+}
+
+.gallery-grid figure:hover img {
+    transform: scale(1.08); /* More pronounced image zoom */
+}
+
+.gallery-grid figcaption {
+    padding: 18px 20px; /* More padding */
+    font-size: 15px; /* Slightly larger caption */
+    font-weight: 700; /* Bolder caption */
+    text-align: center;
+    color: var(--dark-text); /* Darker caption text for contrast */
+    background: var(--bg-white);
+    border-radius: 0 0 var(--card-border-radius) var(--card-border-radius); 
+}
+
+
+/* ===== 9. Responsive Design Breakpoints ===== */
+
+/* 9.1 Breakpoint for Small Laptops / Large Tablets */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 260px; /* Slightly tighter sidebar */
+    }
+    .main-content {
+        margin-left: 260px;
+    }
+    .page-section {
+        padding: 4rem;
+    }
+    .hero-section {
+        padding: 60px 4rem;
+    }
+    .hero-content h1 {
+        font-size: 75px; /* Adjust hero title for smaller screens */
+    }
+}
+
+
+/* 9.2 Tablet Breakpoint */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .hero-section {
+        padding: 4rem 40px;
+        min-height: 80vh;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+    
+    .hero-content h1 {
+        font-size: 65px; /* Further adjust hero title */
+    }
+
+    .hero-content blockquote {
+        margin: 30px auto;
+    }
+
+    .hero-image {
+        display: none;
+    }
+
+    .page-section {
+        padding: 3rem 40px; 
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted min-width */
+    }
+}
+
+/* 9.3 Mobile Breakpoint */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 45px; /* Smaller hero title for mobile */
+        margin-bottom: 20px;
+    }
+
+    .hero-content .bio {
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+
+    .page-section h2 {
+        font-size: 32px; /* Smaller section titles for mobile */
+        border-bottom-width: 3px; /* Thinner accent line */
+    }
+    
+    .page-section h3 {
+        font-size: 22px;
+    }
+
+    .page-section {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .btn {
+        padding: 12px 30px; /* Smaller button for mobile */
+        font-size: 13px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .gallery-grid img {
+        height: 300px; /* Adjusted height for 1-col mobile gallery */
+    }
+
+    .info-list li {
+        font-size: 16px;
+    }
+    .info-list li strong {
+        display: block;
+        margin-bottom: 5px;
+        min-width: unset; /* Remove min-width for stacking */
+    }
+    .achievement-list li {
+        font-size: 16px;
+    }
+}
